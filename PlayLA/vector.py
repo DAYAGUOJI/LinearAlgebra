@@ -1,3 +1,5 @@
+import math
+
 class Vector:
 
     def __init__(self, lst):
@@ -8,7 +10,7 @@ class Vector:
         Args:
         lst: List of numerical values to initialize the vector.
         """
-        self._values = lst
+        self._values = list(lst)
 
     def __add__(self, another):
         """Adds another vector to this vector element-wise.
@@ -25,6 +27,31 @@ class Vector:
         assert len(self) == len(another), \
             "Error in adding. Lengths of vectors must be the same."
         return Vector([x + y for x, y in zip(self, another)])
+    
+    def __sub__(self, another):
+        assert len(self) == len(another), \
+            "Error in subtracting. Lengths of vectors must be the same."
+        return Vector([x - y for x, y in zip(self, another)])
+    
+    def __mul__(self, scalar): 
+        return Vector([x * scalar for x in self])
+    
+    def __rmul__(self, scalar):
+        return self.__mul__(scalar)
+    
+    def __pos__(self):
+        return 1 * self
+    
+    def __neg__(self):
+        return -1 * self
+    
+    #zero vector
+    @classmethod
+    def zero(cls, dim):
+        return cls([0] * dim)
+    
+    def norm(self):
+        return math.sqrt(sum(x ** 2 for x in self))
     
     def __iter__(self):
         return self._values.__iter__()

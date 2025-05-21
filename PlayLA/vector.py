@@ -1,4 +1,5 @@
 import math
+from ._global import EPSILON
 
 class Vector:
 
@@ -33,11 +34,28 @@ class Vector:
             "Error in subtracting. Lengths of vectors must be the same."
         return Vector([x - y for x, y in zip(self, another)])
     
+    def dot(self, other):
+        assert len(self) == len(other), \
+            "Error in dot product. Lengths of vectors must be the same."
+        return sum(x * y for x, y in zip(self, other))
+    
     def __mul__(self, scalar): 
+        """
+            Multiply this vector by a scalar.
+            
+            Args:
+                scalar: The scalar value to multiply with each component of the vector.
+                
+            Returns:
+                Vector: A new vector with each component multiplied by the scalar.
+        """
         return Vector([x * scalar for x in self])
     
     def __rmul__(self, scalar):
         return self.__mul__(scalar)
+    
+    def __truediv__(self, scalar):
+        return Vector([x / scalar for x in self])
     
     def __pos__(self):
         return 1 * self
@@ -52,6 +70,11 @@ class Vector:
     
     def norm(self):
         return math.sqrt(sum(x ** 2 for x in self))
+    
+    def normalize(self):
+        if self.norm() < EPSILON:
+            raise ZeroDivisionError('Cannot normalize the zero vector.')
+        return Vector(self._values) / self.norm()
     
     def __iter__(self):
         return self._values.__iter__()

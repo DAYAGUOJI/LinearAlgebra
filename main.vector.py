@@ -29,3 +29,17 @@ if __name__ == '__main__':
 
     #test norm
     print('norm of {} = {}'.format(vec, vec.norm()))
+
+    #test normalization
+    print('normalized {} = {}'.format(vec, vec.normalize()))
+    print(vec.normalize().norm())
+    print(vec2.normalize().norm())
+
+    #test zero vector norm
+    try:
+        print(Vector.zero(3).normalize())
+    except ZeroDivisionError as e:
+        print(e)
+
+    #test dot product
+    print('dot product of {} and {} = {}'.format(vec, vec2, vec.dot(vec2)))

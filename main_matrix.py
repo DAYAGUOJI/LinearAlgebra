@@ -1,4 +1,5 @@
 from PlayLA.matrix import Matrix
+from PlayLA.vector import Vector
 
 if __name__ == "__main__":
     #test matrix representation
@@ -23,3 +24,15 @@ if __name__ == "__main__":
     print(matrix4 - matrix5)
     print(matrix4 * 2)
     print(Matrix.zero(2, 3))
+
+    matrix6 = Matrix([[2, 1], [3, 5], [4, 6]])
+    vector1 = Vector([3, 1])
+    print(matrix6.col_num())
+    print(matrix6.dot(vector1))
+
+    matrix7 = Matrix([[3, 6], [1, 3]])
+    print(matrix6.dot(matrix7))
+
+    #test matrix transpose
+    matrix8 = Matrix([[1, 2], [3, 4]])
+    print(matrix8.T())

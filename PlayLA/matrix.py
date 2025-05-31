@@ -2,18 +2,28 @@ from .vector import Vector
 
 class Matrix:
     
+    #create class of zero matrix
+    @classmethod
+    def zeros(cls, r, c):
+        return cls([[0] * c for _ in range(r)])
     @classmethod
     def zero(cls, r, c):
         return cls([[0] * c for _ in range(r)])
     
+    #create class of identity matrix
+    #return a n * n identity matrix
+    @classmethod
+    def identity(cls, dim):
+        return cls([[1 if i == j else 0 for j in range(dim)] for i in range(dim)])
+    
     def T(self):
         """转置矩阵"""
-        return Matrix([[self._values[j][i] for j in range(self.col_num())]
-                       for i in range(self.row_num())])
+        return Matrix([[e for e in self.col_vector(i)] 
+                        for i in range(self.col_num())])
 
     def __init__(self, list2d):
         self._values = [row[:] for row in list2d]
-
+ 
     def shape(self):
         return len(self._values), len(self._values[0])
     

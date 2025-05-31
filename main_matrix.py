@@ -36,3 +36,10 @@ if __name__ == "__main__":
     #test matrix transpose
     matrix8 = Matrix([[1, 2], [3, 4]])
     print(matrix8.T())
+    print(matrix6.T())
+
+    #test generate identity matrix
+    I = Matrix.identity(2)
+    print(I)
+    print("matrix8 * I = {}".format(matrix8.dot(I)))
+    print("I * matrix8 = {}".format(I.dot(matrix8)))

@@ -37,3 +37,16 @@ if __name__ == "__main__":
     print(np.zeros((2, 3)))
     print(matrix0 * matrix1)
     print(matrix0.dot(matrix1))
+
+    #test identity matrix
+    I = np.identity(2)
+    print(I)
+    print(matrix0.dot(I))
+
+    #test inverse matrix
+    invA = np.linalg.inv(matrix0)
+    print(invA)
+    print(matrix0.dot(invA))
+
+    C = np.array([[1, 2, 3], [4, 5, 6]])
+    

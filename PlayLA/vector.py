@@ -1,5 +1,5 @@
 import math
-from ._global import EPSILON
+from ._global import is_zero
 
 class Vector:
 
@@ -12,6 +12,10 @@ class Vector:
         lst: List of numerical values to initialize the vector.
         """
         self._values = list(lst)
+
+    #Enter the values and generate a copy of the vector 
+    def underlying(self):
+        return self._values[:]
 
     def __add__(self, another):
         """Adds another vector to this vector element-wise.
@@ -72,7 +76,7 @@ class Vector:
         return math.sqrt(sum(x ** 2 for x in self))
     
     def normalize(self):
-        if self.norm() < EPSILON:
+        if is_zero(self.norm()):
             raise ZeroDivisionError('Cannot normalize the zero vector.')
         return Vector(self._values) / self.norm()
     

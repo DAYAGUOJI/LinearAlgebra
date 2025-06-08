@@ -73,6 +73,14 @@ class LinearSystem :
         #do the backward elimination
         self._backward()
 
+        """determine whether the augmented matrix has a solution"""
+        #traverse all zero rows
+        for i in range(len(self.pivots), self._m):
+            #determine if the constant matrix is 0,if 0 it has solutions,otherwise no
+            if not is_zero(self.Ab[i][-1]):
+                return False
+            return True
+
     def fancy_print(self):
         for i in range(self._m):
             #self._n does not include the constant matrix
